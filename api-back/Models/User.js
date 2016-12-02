@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 var userSchema{
+  loginId: String,
   firstName: String,
   lastName: String,
   about: String,

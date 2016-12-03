@@ -17,6 +17,7 @@ router.post('/', function(req, res){
   var activity = new Activity(req.body);
   activity.save(function(err){
     if (err){
+      console.log('cow');
       res.status(500).send();
     } else {
       res.json(activity);

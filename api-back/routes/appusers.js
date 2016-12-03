@@ -1,49 +1,50 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../Models/user.js');
+var Appuser = require('../Models/appuser.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  User.find({}, function(err, users){
+  Appuser.find({}, function(err, appuser){
     if (err){
       res.status(500).send();
     } else {
-      res.json(users);
+      res.json(appuser);
     }
   })
 });
 
 router.post('/', function(req, res){
-  var user = new Activity(req.body);
-  user.save(function(err){
+  var appuser = new Appuser(req.body);
+  appuser.save(function(err){
     if (err){
       res.status(500).send();
     } else {
-      res.json(user);
+      res.json(appuser);
     }
   })
 })
 
 // Single activity routes
 router.use('/:id', function (req, res, next) {
-  User.findOne({ '_id': req.params.id }, function (err, user) {
+  Appuser.findOne({ '_id': req.params.id }, function (err, appuser) {
     if (err) {
-      res.status(500).send()
-    } else if (!store) {
-      res.status(404).send()
+      console.log("cow");
+      res.status(500).send();
+    } else if (!appuser) {
+      res.status(404).send();
     } else {
-      res.user = user;
+      res.appuser = appuser;
       next()
     }
   })
 })
 
 router.get('/:id', function (req, res) {
-  res.json(res.user)
+  res.json(res.appuser)
 })
 
 router.put('/:id', function(req, res){
-  var updatedUser = Object.assign(res.user, req.body);
+  var updatedUser = Object.assign(res.appuser, req.body);
   updatedUser.save(function(err){
     if (err){
       res.status(500).send();
@@ -54,7 +55,7 @@ router.put('/:id', function(req, res){
 })
 
 router.delete('/:id', function(req, res){
-  res.user.remove(function(err){
+  res.appuser.remove(function(err){
     if (err){
       res.status(500).send();
     } else {

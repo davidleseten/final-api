@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var activitySchema{
+var activitySchema = {
   title: String,
   headliine: String,
   description: String,

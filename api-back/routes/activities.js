@@ -4,7 +4,7 @@ var Activity = require('../Models/activity.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  Activty.find({}, function(err, activities){
+  Activity.find({}, function(err, activities){
     if (err){
       res.status(500).send();
     } else {
@@ -26,10 +26,10 @@ router.post('/', function(req, res){
 
 // Single activity routes
 router.use('/:id', function (req, res, next) {
-  Actvity.findOne({ '_id': req.params.id }, function (err, activity) {
+  Activity.findOne({ '_id': req.params.id }, function (err, activity) {
     if (err) {
       res.status(500).send()
-    } else if (!store) {
+    } else if (!activity) {
       res.status(404).send()
     } else {
       res.activity = activity;
